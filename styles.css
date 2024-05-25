@@ -6,6 +6,10 @@
     --redorange: #e76f51;
 }
 
+* {
+    color: black;
+}
+
 body {
     background: var(--yellow);
     margin: 0; 
@@ -19,7 +23,7 @@ body {
     align-items: center;
 }
 
-.item2 { 
+#player1side { 
     grid-area: left; 
 }
 
@@ -30,7 +34,7 @@ body {
     align-items: center;
 }
 
-.item4 { 
+#player2side{ 
     grid-area: right;
 }
 
@@ -58,4 +62,11 @@ form {
     display: flex;
     flex-flow: column;
     align-items: center;
+}
+
+.game-container {
+    background-color: var(--yellow);
+    width: 60%;
+    height: 0;
+    padding-bottom: 60%;
 }

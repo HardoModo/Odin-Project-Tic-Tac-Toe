@@ -11,27 +11,27 @@
     <div class="grid-container">
         <div class="item1">Enter player information to start the game</div>
 
-        <div class="item2">
-            <form>
+        <div id="player1side">
+            <form id="player1form">
                 <label for="player1name">Player 1 Name:</label><br>
                 <input type="text" id="player1name" name="player1name"><br>
                 <label for="player1symbol">Player 1 Symbol:</label><br>
                 <input type="text" id="player1symbol" name="player1symbol">
-                <input type="submit" value="Submit">
+                <button onclick="gameMaster.collectPlayerInfo(`player1`)" type="button">Submit</button>
             </form>
         </div>
         
         <div class="item3">
-
+            <div class="game-container"></div>
         </div>  
         
-        <div class="item4">
-            <form>
+        <div id="player2side">
+            <form id="player2form">
                 <label for="player2name">Player 2 Name:</label><br>
                 <input type="text" id="player2name" name="player2name"><br>
                 <label for="player2symbol">Player 2 Symbol:</label><br>
                 <input type="text" id="player2symbol" name="player2symbol">
-                <input type="submit" value="Submit">
+                <button onclick="gameMaster.collectPlayerInfo(`player2`)" type="button">Submit</button>
             </form>
         </div>
     </div>
