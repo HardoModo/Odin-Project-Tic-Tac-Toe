@@ -8,4 +8,31 @@
 
 body {
     background: var(--yellow);
+    margin: 0; 
+    padding: 0;
+}
+
+.item1 { grid-area: header; }
+.item2 { grid-area: left; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+
+.grid-container {
+    display: grid;
+    height: 100vh;
+    grid-template-areas:
+      'header header header header header'
+      'left main main main right'
+      'left main main main right'
+      'left main main main right'
+      'left main main main right'
+      'left main main main right';
+    gap: 10px;
+}
+
+.grid-container > div {
+    background-color: var(--orange);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
 }
