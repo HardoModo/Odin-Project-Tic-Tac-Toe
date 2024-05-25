@@ -49,25 +49,45 @@ const gameMaster = (function () {
     const checkGameConditions = () =>
     {
         // Check for game wins and ties here with the gameboard array
+        // if (gameBoard.Array[0] === gameBoard.Array[1] && gameBoard.Array[0] === gameBoard.Array[2] && gameBoard.Array[0] !== null ||
+        // gameBoard.Array[0] === gameBoard.Array[4] && gameBoard.Array[0] === gameBoard.Array[8] && gameBoard.Array[0] !== null ||
+        // gameBoard.Array[0] === gameBoard.Array[3] && gameBoard.Array[0] === gameBoard.Array[6] && gameBoard.Array[0] !== null ||
+        // gameBoard.Array[2] === gameBoard.Array[4] && gameBoard.Array[2] === gameBoard.Array[6] && gameBoard.Array[2] !== null ||
+        // gameBoard.Array[2] === gameBoard.Array[5] && gameBoard.Array[2] === gameBoard.Array[8] && gameBoard.Array[2] !== null ||
+        // gameBoard.Array[6] === gameBoard.Array[7] && gameBoard.Array[6] === gameBoard.Array[8] && gameBoard.Array[6] !== null ||
+        // gameBoard.Array[1] === gameBoard.Array[4] && gameBoard.Array[1] === gameBoard.Array[7] && gameBoard.Array[1] !== null ||
+        // gameBoard.Array[3] === gameBoard.Array[4] && gameBoard.Array[3] === gameBoard.Array[5] && gameBoard.Array[3] !== null) {
+            // Current player wins. Game ends
+            // Give point to player
+        // } else if (playerTurn == 9) {
+            // Check for ties
+        // } else {
+        //     gameMaster.playerTurn += 1
+
+        //     gameMaster.gameLoop()
+        // }
+
+        gameMaster.playerTurn += 1
+
+        gameMaster.gameLoop()
     }
+
+    const gameLoop = () => {
+        console.log("Player turn: " + gameMaster.playerTurn)
+        gameMaster.startPlayerTurn(gameMaster.playerTurn)
+    }
+
 
     const startGame = () =>
     {
         gameBoard.setUpBoard()
-        var endGame = false
         gameMaster.playerTurn = 0
 
-        while (endGame == false) {
-            gameMaster.startPlayerTurn(gameMaster.playerTurn)
-            gameMaster.checkGameConditions()
-
-            gameMaster.playerTurn += 1
-            break
-        }
+        gameMaster.gameLoop()
 
     }
 
-    return { playerArray, playerTurn, collectPlayerInfo, startGame, startPlayerTurn, checkGameConditions };
+    return { playerArray, playerTurn, collectPlayerInfo, startGame, startPlayerTurn, checkGameConditions, gameLoop };
   })();
 
 const gameBoard = (function () {
@@ -99,9 +119,12 @@ const gameBoard = (function () {
                 gameSquare.addEventListener(
                     "click",
                     (event) => {
-                        console.log(gameMaster.playerArray)
-                        console.log(gameMaster.playerTurn)
-                        event.target.innerHTML = gameMaster.playerArray[gameMaster.playerTurn].symbol;
+                        if (event.target.innerHTML != "") {
+                            window.alert("That square is already taken")
+                        } else {
+                            event.target.innerHTML = gameMaster.playerArray[gameMaster.playerTurn % 2].symbol;
+                            gameMaster.checkGameConditions()
+                        }
                     }
                 );
                 
