@@ -49,34 +49,33 @@ const gameMaster = (function () {
     const checkGameConditions = () =>
     {
         // Check for game wins and ties here with the gameboard array
-        // if (gameBoard.Array[0] === gameBoard.Array[1] && gameBoard.Array[0] === gameBoard.Array[2] && gameBoard.Array[0] !== null ||
-        // gameBoard.Array[0] === gameBoard.Array[4] && gameBoard.Array[0] === gameBoard.Array[8] && gameBoard.Array[0] !== null ||
-        // gameBoard.Array[0] === gameBoard.Array[3] && gameBoard.Array[0] === gameBoard.Array[6] && gameBoard.Array[0] !== null ||
-        // gameBoard.Array[2] === gameBoard.Array[4] && gameBoard.Array[2] === gameBoard.Array[6] && gameBoard.Array[2] !== null ||
-        // gameBoard.Array[2] === gameBoard.Array[5] && gameBoard.Array[2] === gameBoard.Array[8] && gameBoard.Array[2] !== null ||
-        // gameBoard.Array[6] === gameBoard.Array[7] && gameBoard.Array[6] === gameBoard.Array[8] && gameBoard.Array[6] !== null ||
-        // gameBoard.Array[1] === gameBoard.Array[4] && gameBoard.Array[1] === gameBoard.Array[7] && gameBoard.Array[1] !== null ||
-        // gameBoard.Array[3] === gameBoard.Array[4] && gameBoard.Array[3] === gameBoard.Array[5] && gameBoard.Array[3] !== null) {
+        if (gameBoard.gameBoardArray[0] == gameBoard.gameBoardArray[1] && gameBoard.gameBoardArray[0] == gameBoard.gameBoardArray[2] && gameBoard.gameBoardArray[0] !== undefined ||
+        gameBoard.gameBoardArray[0] === gameBoard.gameBoardArray[4] && gameBoard.gameBoardArray[0] === gameBoard.gameBoardArray[8] && gameBoard.gameBoardArray[0] !== undefined ||
+        gameBoard.gameBoardArray[0] === gameBoard.gameBoardArray[3] && gameBoard.gameBoardArray[0] === gameBoard.gameBoardArray[6] && gameBoard.gameBoardArray[0] !== undefined ||
+        gameBoard.gameBoardArray[2] === gameBoard.gameBoardArray[4] && gameBoard.gameBoardArray[2] === gameBoard.gameBoardArray[6] && gameBoard.gameBoardArray[2] !== undefined ||
+        gameBoard.gameBoardArray[2] === gameBoard.gameBoardArray[5] && gameBoard.gameBoardArray[2] === gameBoard.gameBoardArray[8] && gameBoard.gameBoardArray[2] !== undefined ||
+        gameBoard.gameBoardArray[6] === gameBoard.gameBoardArray[7] && gameBoard.gameBoardArray[6] === gameBoard.gameBoardArray[8] && gameBoard.gameBoardArray[6] !== undefined ||
+        gameBoard.gameBoardArray[1] === gameBoard.gameBoardArray[4] && gameBoard.gameBoardArray[1] === gameBoard.gameBoardArray[7] && gameBoard.gameBoardArray[1] !== undefined ||
+        gameBoard.gameBoardArray[3] === gameBoard.gameBoardArray[4] && gameBoard.gameBoardArray[3] === gameBoard.gameBoardArray[5] && gameBoard.gameBoardArray[3] !== undefined) 
+        {
             // Current player wins. Game ends
             // Give point to player
-        // } else if (playerTurn == 9) {
-            // Check for ties
-        // } else {
-        //     gameMaster.playerTurn += 1
+            console.log("Winner!")
+        } else {
+            gameMaster.playerTurn += 1
 
-        //     gameMaster.gameLoop()
-        // }
+            if (gameMaster.playerTurn == 9) {
+                console.log("Game ends in a tie")
+            }
 
-        gameMaster.playerTurn += 1
-
-        gameMaster.gameLoop()
+            gameMaster.gameLoop()
+        }
     }
 
     const gameLoop = () => {
         console.log("Player turn: " + gameMaster.playerTurn)
         gameMaster.startPlayerTurn(gameMaster.playerTurn)
     }
-
 
     const startGame = () =>
     {
@@ -123,6 +122,7 @@ const gameBoard = (function () {
                             window.alert("That square is already taken")
                         } else {
                             event.target.innerHTML = gameMaster.playerArray[gameMaster.playerTurn % 2].symbol;
+                            gameBoard.gameBoardArray[event.target.id.slice(-1)] = gameMaster.playerArray[gameMaster.playerTurn % 2].symbol;
                             gameMaster.checkGameConditions()
                         }
                     }
@@ -132,5 +132,5 @@ const gameBoard = (function () {
             }
         }
 
-    return { setUpBoard };
+    return { gameBoardArray, setUpBoard };
 })();
