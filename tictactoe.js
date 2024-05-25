@@ -9,6 +9,7 @@ function createPlayer (name, symbol, playerid) {
 
 const gameMaster = (function () {
     let playerArray = []
+    let playerTurn
 
     const collectPlayerInfo = (playerid) =>
     {
@@ -32,15 +33,44 @@ const gameMaster = (function () {
         }
     };
 
+    const startPlayerTurn = (playerTurn) =>
+    {
+        const headerText = document.getElementById("item1")
+
+        if (playerTurn % 2 == 0) {
+            playerTurn = 0
+        } else {
+            playerTurn = 1
+        }
+
+        headerText.innerHTML = "It's " + playerArray[playerTurn].name + "'s turn."
+    }
+
+    const checkGameConditions = () =>
+    {
+        // Check for game wins and ties here with the gameboard array
+    }
+
     const startGame = () =>
     {
         gameBoard.setUpBoard()
+        var endGame = false
+        gameMaster.playerTurn = 0
+
+        while (endGame == false) {
+            gameMaster.startPlayerTurn(gameMaster.playerTurn)
+            gameMaster.checkGameConditions()
+
+            gameMaster.playerTurn += 1
+            break
+        }
+
     }
 
-    return { collectPlayerInfo, startGame };
+    return { playerArray, playerTurn, collectPlayerInfo, startGame, startPlayerTurn, checkGameConditions };
   })();
 
-  const gameBoard = (function () {
+const gameBoard = (function () {
     let gameBoardArray = new Array(9)
 
     const setUpBoard = () =>
@@ -65,10 +95,19 @@ const gameMaster = (function () {
                         event.target.style.background = "var(--teal)";
                     }
                 );
+
+                gameSquare.addEventListener(
+                    "click",
+                    (event) => {
+                        console.log(gameMaster.playerArray)
+                        console.log(gameMaster.playerTurn)
+                        event.target.innerHTML = gameMaster.playerArray[gameMaster.playerTurn].symbol;
+                    }
+                );
                 
                 gameContainer.appendChild(gameSquare)
             }
         }
 
     return { setUpBoard };
-  })();
+})();

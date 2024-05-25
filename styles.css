@@ -16,7 +16,7 @@ body {
     padding: 0;
 }
 
-.item1 { 
+#item1 { 
     grid-area: header;
     display: flex;
     justify-content: center;
