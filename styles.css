@@ -64,9 +64,59 @@ form {
     align-items: center;
 }
 
-.game-container {
+#grid0, #grid1, #grid2,
+#grid3, #grid4, #grid5,
+#grid6, #grid7, #grid8 {
+    background-color: var(--teal);
+}
+
+#grid0 { 
+    grid-area: grid0; 
+}
+
+#grid1 { 
+    grid-area: grid1; 
+}
+
+#grid2 { 
+    grid-area: grid2; 
+}
+
+#grid3 { 
+    grid-area: grid3; 
+}
+
+#grid4 { 
+    grid-area: grid4; 
+}
+
+#grid5 { 
+    grid-area: grid5; 
+}
+
+#grid6 { 
+    grid-area: grid6; 
+}
+
+#grid7 { 
+    grid-area: grid7; 
+}
+
+#grid8 { 
+    grid-area: grid8; 
+}
+
+#game-container {
     background-color: var(--yellow);
     width: 60%;
-    height: 0;
-    padding-bottom: 60%;
+    height: 80%;
+    /* padding-bottom: 60%; */
+
+    padding: 10px;
+    gap: 5px;
+    display: grid;
+    grid-template-areas:
+      'grid0 grid1 grid2'
+      'grid3 grid4 grid5'
+      'grid6 grid7 grid8';
 }

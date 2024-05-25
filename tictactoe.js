@@ -1,5 +1,3 @@
-console.log("Connected")
-
 function createPlayer (name, symbol, playerid) {
   
     let score = 0;
@@ -10,7 +8,6 @@ function createPlayer (name, symbol, playerid) {
 }
 
 const gameMaster = (function () {
-    let gameArray = []
     let playerArray = []
 
     const collectPlayerInfo = (playerid) =>
@@ -37,8 +34,41 @@ const gameMaster = (function () {
 
     const startGame = () =>
     {
-        console.log(playerArray)
+        gameBoard.setUpBoard()
     }
 
     return { collectPlayerInfo, startGame };
+  })();
+
+  const gameBoard = (function () {
+    let gameBoardArray = new Array(9)
+
+    const setUpBoard = () =>
+        {
+            const gameContainer = document.getElementById(`game-container`)
+
+            for (let i = 0; i < gameBoardArray.length; i++) {
+                const gameSquare = document.createElement("div")
+
+                gameSquare.id = "grid" + i
+                
+                gameSquare.addEventListener(
+                    "mouseover",
+                    (event) => {
+                        event.target.style.background = "var(--redorange)";
+                    }
+                );
+
+                gameSquare.addEventListener(
+                    "mouseleave",
+                    (event) => {
+                        event.target.style.background = "var(--teal)";
+                    }
+                );
+                
+                gameContainer.appendChild(gameSquare)
+            }
+        }
+
+    return { setUpBoard };
   })();
